@@ -1,6 +1,6 @@
 ﻿namespace AppStockControl.Models
 {
-    public class Brand
+    public class Category
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
