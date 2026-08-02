@@ -1,6 +1,5 @@
 ﻿using AppStockControl.ConnectionFactore;
 using AppStockControl.Models;
-using AppStockControl.Service.Interfaces;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Net.Http.Json;
@@ -10,6 +9,10 @@ namespace AppStockControl.Service
     public class ProductService 
     {
         #region GetAll
+        /// <summary>
+        /// Method responsible for Get all product
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ObservableCollection<Product>> GetAll()
         {
             try
@@ -41,6 +44,11 @@ namespace AppStockControl.Service
         #endregion
 
         #region GetById
+        /// <summary>
+        /// Method responsible get product by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static async Task<Product> GetById(Guid id)
         {
             try
@@ -74,6 +82,11 @@ namespace AppStockControl.Service
         #endregion
 
         #region ChangeStatus
+        /// <summary>
+        /// Method responsible for change status
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static async Task<string> ChangeStatus(Guid id)
         {
             try
@@ -103,6 +116,11 @@ namespace AppStockControl.Service
         #endregion
 
         #region Create
+        /// <summary>
+        /// Method responsible for create product in database
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public static async Task<string> Create(Product product)
         {
             try
@@ -132,6 +150,11 @@ namespace AppStockControl.Service
         #endregion
 
         #region GetByStatus
+        /// <summary>
+        /// Mehtod responsible for get product by status
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public async static Task<ObservableCollection<Product>> GetByStatus(bool value)
         {
             try
@@ -163,6 +186,11 @@ namespace AppStockControl.Service
         #endregion
 
         #region Update
+        /// <summary>
+        /// Method resposnible for update product
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public async static Task<string> Update(Product product)
         {
             try
@@ -192,6 +220,12 @@ namespace AppStockControl.Service
         #endregion
 
         #region UpdateStock
+        /// <summary>
+        /// Method responsible for update stock
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="stockQuantity"></param>
+        /// <returns></returns>
         public async static Task<bool> UpdateStock(Guid productId, int stockQuantity)
         {
             try
