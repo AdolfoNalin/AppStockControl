@@ -5,6 +5,13 @@
         public AppShell()
         {
             InitializeComponent();
+
+            Task.Delay(800);
+            Dispatcher.Dispatch(async () =>
+            {
+                await Shell.Current.GoToAsync("//menu");
+            });
         }
     }
 }
+ 
