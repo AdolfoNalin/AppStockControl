@@ -17,7 +17,7 @@ namespace AppStockControl.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<string> ChangeStatus(Guid id)
+        public static async Task<string> ChangeStatus(Guid id)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace AppStockControl.Service
         /// <param name="user"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public async Task<string> Create(User user)
+        public static async Task<string> Create(User user)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace AppStockControl.Service
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>    
         /// <exception cref="Exception"></exception>    
-        public async Task<ObservableCollection<User>> GetAll()
+        public static async Task<ObservableCollection<User>> GetAll()
         {
             try
             {
@@ -129,7 +129,7 @@ namespace AppStockControl.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<User> GetById(Guid id)
+        public static async Task<User> GetById(Guid id)
         {
             try
             {
@@ -169,7 +169,7 @@ namespace AppStockControl.Service
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="Exception"></exception>
-        public async Task<ObservableCollection<User>> GetByStatus(bool value)
+        public static async Task<ObservableCollection<User>> GetByStatus(bool value)
         {
             try
             {
@@ -209,12 +209,12 @@ namespace AppStockControl.Service
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="Exception"></exception>
-        public async Task<UserResponse> Login(LoginRequest login)
+        public static async Task<UserResponse> Login(LoginRequest login)
         {
             try
             {
-                HttpClient client = ConnectionLocalhost.ConnectionPostgree();
-                HttpResponseMessage response = await client.PostAsJsonAsync($"{_name}/Login", login);
+                HttpClient client = ConnectionLocalhost.ConnectionPostgreeUser();
+                HttpResponseMessage response = await client.PostAsJsonAsync($"User/Login", login);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -247,7 +247,7 @@ namespace AppStockControl.Service
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public async Task<string> Update(User user)
+        public static async Task<string> Update(User user)
         {
             try
             {
