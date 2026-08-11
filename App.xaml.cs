@@ -1,17 +1,21 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AppStockControl.Views;
 
 namespace AppStockControl
 {
     public partial class App : Application
     {
-        public App()
+        public App(Login login)
         {
+            MainPage = login;
             InitializeComponent();
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            var window = base.CreateWindow(activationState);
+            window.Height = 700;
+            window.Width = 600;
+            return window;
         }
     }
 }
