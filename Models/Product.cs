@@ -25,7 +25,7 @@
         public decimal SalePrice{ get; set; }
         public UnitType UnitType { get; set; }
         public string? Barcode{ get; set; }
-        public decimal ProfitMargin { get; set; }
+        public decimal ProfitMargin { get; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string? ImagePath { get; set; }
