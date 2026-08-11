@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppStockControl.Views.SignUp">
+    <VerticalStackLayout>
+        <Label
+            Text="Sign Up"
+            FontAttributes="Bold"
+            FontSize="40"
+            HorizontalOptions="Center"/>
+
+        <Border
+            StrokeShape="12"
+            Margin="10">
+
+            <Grid
+                RowSpacing="20"
+                RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+
+                <Label
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="Dados do Usuário"
+                    FontSize="18"/>
+
+                <Entry
+                    Grid.Row="1"
+                    Placeholder="Login"/>
+
+                <Entry
+                     Grid.Row="2"
+                     Placeholder="Email"/>
+
+                <Entry
+                     Grid.Row="3"
+                     Placeholder="Senha"/>
+
+                <Entry
+                     Grid.Row="4"
+                     Placeholder="Confirmação de Senha"/>
+
+                <HorizontalStackLayout
+                    Spacing="20"
+                    Grid.Row="5"
+                    Margin="10">
+
+                    <RadioButton
+                        IsChecked="True"
+                        Content="Ativado"/>
+                    <RadioButton
+                        Content="Desativado"/>
+                </HorizontalStackLayout>
+            </Grid>
+        </Border>
+
+        <Button
+           HorizontalOptions="Center"
+           Text="Salvar"
+           FontSize="20"
+           FontAttributes="Bold"/>
+    </VerticalStackLayout>
+</ContentPage>

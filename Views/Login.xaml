@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppStockControl.Views.Login"
+             Title="Login">
+    <Grid
+        RowDefinitions="Auto, Auto, Auto">
+        <Label
+            Grid.Row="0"
+            Padding="40"
+            Text="Login"
+            HorizontalOptions="Center"
+            FontSize="40"
+            FontAttributes="Bold"/>
+
+        <Grid
+            Grid.Row="1"
+            HorizontalOptions="Center"
+            RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+            RowSpacing="20">
+
+            <Label
+                Grid.Column="1"
+                FontAttributes="Bold"
+                Text="Login"/>
+
+            <Entry
+                x:Name="txtLogin"
+                Grid.Row="1"
+                />
+
+            <Label
+                 HorizontalOptions="Start"
+                 Grid.Row="2"
+                 FontAttributes="Bold"
+                 Text="Senha:"
+                 />
+            <Entry
+                x:Name="txtpassword"
+                Grid.Row="3"
+                Completed="Button_Clicked_Login"
+                IsPassword="True"/>
+
+            <Grid
+                Grid.Row="4"
+                ColumnDefinitions="27, 200, Auto">
+                <CheckBox
+                    CheckedChanged="CheckedChanged_Click"
+                    IsChecked="False"/>
+                <Label
+                    Padding="10"
+                    Grid.Column="1"
+                    Text="Mostrar senha"/>
+
+                <Label
+                    Padding="10"
+                    TextColor="CornflowerBlue"
+                    FontAttributes="Italic"
+                    HorizontalOptions="End"
+                    Grid.Column="2"
+                    Text="Esqueci minha senha">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="Label_Click_ForgotPassword">
+                            
+                        </TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                    
+                </Label>
+            </Grid>
+
+            <Button
+                Grid.Row="5"
+                Text="Login"
+                HorizontalOptions="FillAndExpand"
+                Clicked="Button_Clicked_Login"/>
+
+        </Grid>
+
+        <Grid 
+            Margin="20"
+            ColumnDefinitions="Auto, *, Auto"
+            RowDefinitions="Auto, Auto"
+            Padding="20"
+            Grid.Row="2"
+            RowSpacing="20">
+
+            <Button
+                FontAttributes="Bold"
+                HorizontalOptions="Start"
+                Grid.Row="0"
+                Grid.Column="0"
+                ImageSource="facebook.png"
+                Text="Facebook"/>
+
+            <Button
+                FontAttributes="Bold"
+                 HorizontalOptions="EndAndExpand"
+                 Grid.Row="0"
+                 Grid.Column="2"
+                 ImageSource="google.png"
+                 Text="Google"/>
+
+            <Button
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Grid.Row="2"
+                Grid.Column="1"
+                Clicked="Button_Clicked_SignUp"
+                Text="Cadastrar"/>
+
+        </Grid>
+
+       
+    </Grid>
+</ContentPage>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppStockControl.Views.ProductAdd"
+             Title="ProductAdd">
+    <VerticalStackLayout>
+
+
+        <Grid
+            Margin="10"
+            RowSpacing="14"
+            RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+            <Border
+                WidthRequest="120"
+                HeightRequest="50"
+                Grid.Row="0"
+                Margin="10"
+                StrokeShape="10"
+                HorizontalOptions="Center">
+                <Label
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    Text="Cadastrar"/>
+            </Border>
+            <HorizontalStackLayout
+                Spacing="8"
+                Grid.Row="1">
+
+                <Entry
+                    x:Name="txtDescription"
+                    HorizontalOptions="Fill"
+                    Placeholder="Descrição"/>
+
+                <Entry
+                    x:Name="txtStockQuantity"
+                    HorizontalOptions="Fill"
+                    Placeholder="Quantidade"/>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout
+                Spacing="30"
+                Grid.Row="2">
+
+                <Entry
+                    x:Name="txtMinimumStock"
+                    HorizontalOptions="Fill"
+                    Placeholder="Qtd Min."/>
+
+                <Entry
+                    x:Name="txtMaximumStock"
+                    HorizontalOptions="Center"
+                    Placeholder="Qtd Max."/>
+
+                <Entry
+                    x:Name="txtBuyPrice"
+                    HorizontalOptions="Center"
+                    Placeholder="Valor Compra"/>
+
+                <Entry
+                    x:Name="txtSalePrice"
+                    HorizontalOptions="Center"
+                    Placeholder="Valor Venda"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout
+                Spacing="8"
+                Grid.Row="3">
+
+                <Picker 
+                    x:Name="pkCategory"
+                    Title="Selecione Categoria"
+                    SelectedItem="{Binding ItemSelecionado}">
+                </Picker>
+
+                <Entry
+                    x:Name="txtBarCode"
+                    WidthRequest="200"
+                    Placeholder="Código de Barras"/>
+
+                <DatePicker
+                    x:Name="dpCreateAndUpdate"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout
+                Spacing="10"
+                Grid.Row="4">
+                <Picker
+                    Title="Selecione Marca"
+                    x:Name="pkBrand"
+                    SelectedItem="{Binding .}">
+                </Picker>
+
+                <Picker
+                    SelectedItem="{Binding .}"
+                    x:Name="pkUniType"
+                    Title="Selecione Unidade Medida">
+                    
+                </Picker>
+            </HorizontalStackLayout>
+
+            <Entry
+                x:Name="txtObs"
+                Grid.Row="5"
+                Placeholder="Observação"/>
+
+            <ImageButton
+                x:Name="ibProduct"
+                HeightRequest="100"
+                WidthRequest="100"
+                Grid.Row="6"
+                Source="adicionar_imagem.png"/>
+
+            <Button
+                Margin="50"
+                Padding="10"
+                HorizontalOptions="Center"
+                Text="Salvar"
+                Clicked="Button_Clicked_Save"
+                FontAttributes="Bold"
+                Grid.Row="7"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

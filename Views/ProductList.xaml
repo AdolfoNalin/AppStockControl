@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppStockControl.Views.ProductList"
+             Title="Product">
+    <VerticalStackLayout>
+        <Grid
+            RowSpacing="10"
+            Padding="10"
+            Margin="10"
+            RowDefinitions="Auto, Auto, *, Auto">
+
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="*, Auto">
+
+                <Border
+                    HorizontalOptions="FillAndExpand"
+                    StrokeShape="20"
+                    Grid.Column="0">
+                    <Entry
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Pesquise o produto"
+                        x:Name="txtSeach"/>
+                </Border>
+                <Button
+                    BackgroundColor="Gray"
+                    Grid.Column="1"
+                    ImageSource="leitura_barras.png"/>
+            </Grid>
+
+            <Grid
+
+                Grid.Row="1"
+                ColumnDefinitions="*, Auto">
+                <Label
+                    FontAttributes="Bold"
+                    Text="Categoria"/>
+                <Button
+                    BackgroundColor="LightGray"
+                    Grid.Column="1"
+                    Text="Add"
+                    FontAttributes="Bold"/>
+            </Grid>
+
+            <Grid
+                Grid.Row="2">
+                <ScrollView>
+                    <CollectionView
+                        x:Name="cvProduct">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Border
+                                        HeightRequest="80"
+                                        StrokeShape="8">
+
+
+                                        <Grid
+                                            Margin="10"
+                                            ColumnDefinitions="60, *, Auto">
+
+                                            <Border
+                                                HeightRequest="50"
+                                                WidthRequest="50"
+                                                StrokeShape="10">
+                                                <Image/>
+                                            </Border>
+
+                                            <Label
+                                                Padding="10"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Start"
+                                                Grid.Column="1"
+                                                Text="{Binding Description}"/>
+                                            <Label
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Center"
+                                                Grid.Column="1"
+                                                Text="{Binding SalePrice, StringFormat='{}{0:C'}"/>
+                                            <Label
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Start"
+                                                Grid.Column="3"
+                                                Text="{Binding StockQuantity}"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+            </Grid>
+
+            <Button
+                 Grid.Row="3"
+                 Text="+"
+                 FontAttributes="Bold"
+                 FontSize="30"
+                 HeightRequest="30"
+                 TextColor="White"
+                 BackgroundColor="LightSlateGray"
+                 HorizontalOptions="End"
+                 Clicked="Button_Clicked_AddProduct"/>
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>
