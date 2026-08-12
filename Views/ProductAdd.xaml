@@ -6,6 +6,10 @@
     <VerticalStackLayout>
 
 
+        <Border
+            StrokeShape="12"
+            Margin="10">
+            
         <Grid
             Margin="10"
             RowSpacing="14"
@@ -24,82 +28,98 @@
                     HorizontalOptions="Center"
                     Text="Cadastrar"/>
             </Border>
-            <HorizontalStackLayout
-                Spacing="8"
-                Grid.Row="1">
 
+            <Grid
+                ColumnSpacing="8"
+                Grid.Row="1"
+                ColumnDefinitions="*, Auto">
                 <Entry
                     x:Name="txtDescription"
                     HorizontalOptions="Fill"
-                    Placeholder="Descrição"/>
+                    Grid.Column="0"
+                    Placeholder="Decirção"/>
 
                 <Entry
                     x:Name="txtStockQuantity"
-                    HorizontalOptions="Fill"
+                    HorizontalOptions="End"
+                    Grid.Column="1"
                     Placeholder="Quantidade"/>
-
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout
-                Spacing="30"
+            </Grid>
+            
+            <Grid
+                ColumnSpacing="9"
+                ColumnDefinitions="Auto, Auto, Auto, Auto"
                 Grid.Row="2">
 
                 <Entry
+                    HorizontalOptions="Center"
+                    Grid.Column="0"
                     x:Name="txtMinimumStock"
-                    HorizontalOptions="Fill"
                     Placeholder="Qtd Min."/>
 
                 <Entry
-                    x:Name="txtMaximumStock"
                     HorizontalOptions="Center"
+                    Grid.Column="1"
+                    x:Name="txtMaximumStock"
                     Placeholder="Qtd Max."/>
 
                 <Entry
-                    x:Name="txtBuyPrice"
                     HorizontalOptions="Center"
+                    Grid.Column="2"
+                    x:Name="txtBuyPrice"
                     Placeholder="Valor Compra"/>
 
                 <Entry
-                    x:Name="txtSalePrice"
                     HorizontalOptions="Center"
+                    Grid.Column="3"
+                    x:Name="txtSalePrice"
                     Placeholder="Valor Venda"/>
-            </HorizontalStackLayout>
+                <Grid/>
 
-            <HorizontalStackLayout
-                Spacing="8"
+            </Grid>
+            
+            <Grid
+                ColumnSpacing="10"
                 Grid.Row="3">
 
                 <Picker 
+                    HorizontalOptions="Start"
+                    Grid.Column="0"
                     x:Name="pkCategory"
                     Title="Selecione Categoria"
                     SelectedItem="{Binding ItemSelecionado}">
                 </Picker>
 
                 <Entry
+                    HorizontalOptions="Center"
+                    Grid.Column="1"
                     x:Name="txtBarCode"
-                    WidthRequest="200"
                     Placeholder="Código de Barras"/>
 
                 <DatePicker
+                    HorizontalOptions="End"
+                    Grid.Column="2"
                     x:Name="dpCreateAndUpdate"/>
-            </HorizontalStackLayout>
+            </Grid>
 
-            <HorizontalStackLayout
-                Spacing="10"
+            <Grid
+                ColumnSpacing="10"
                 Grid.Row="4">
                 <Picker
+                    HorizontalOptions="Start"
                     Title="Selecione Marca"
                     x:Name="pkBrand"
                     SelectedItem="{Binding .}">
                 </Picker>
 
                 <Picker
+                    HorizontalOptions="Center"
                     SelectedItem="{Binding .}"
                     x:Name="pkUniType"
                     Title="Selecione Unidade Medida">
-                    
+
                 </Picker>
-            </HorizontalStackLayout>
+            </Grid>
 
             <Entry
                 x:Name="txtObs"
@@ -114,7 +134,7 @@
                 Source="adicionar_imagem.png"/>
 
             <Button
-                Margin="50"
+                Margin="30"
                 Padding="10"
                 HorizontalOptions="Center"
                 Text="Salvar"
@@ -122,5 +142,6 @@
                 FontAttributes="Bold"
                 Grid.Row="7"/>
         </Grid>
+        </Border>
     </VerticalStackLayout>
 </ContentPage>

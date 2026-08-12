@@ -22,7 +22,7 @@ public partial class ProductAdd : ContentPage
     }
 
     #region Button_Clicked_Save
-    private void Button_Clicked_Save(object sender, EventArgs e)
+    private async void Button_Clicked_Save(object sender, EventArgs e)
     {
 		try
 		{
@@ -36,8 +36,12 @@ public partial class ProductAdd : ContentPage
 				MinimumStock = int.Parse(txtMinimumStock.Text),
 				BuyPrice = Decimal.Parse(txtBuyPrice.Text),
 				SalePrice = Decimal.Parse(txtSalePrice.Text),
+				CreatedAt = dpCreateAndUpdate.Date.Value,
+				Observation = txtObs.Text
+				//UnitType = int.Parse(pkUniType.Id.ToString())
 			};
 
+			await ProductService.Create(product);
 		}
 		catch (ArgumentNullException ane)
 		{
