@@ -1,4 +1,6 @@
-﻿namespace AppStockControl
+﻿using AppStockControl.Views;
+
+namespace AppStockControl
 {
     public partial class AppShell : Shell
     {
