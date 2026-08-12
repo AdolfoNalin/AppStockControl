@@ -73,7 +73,7 @@
             <Button
                 Grid.Row="5"
                 Text="Login"
-                HorizontalOptions="FillAndExpand"
+                HorizontalOptions="Center"
                 Clicked="Button_Clicked_Login"/>
 
         </Grid>

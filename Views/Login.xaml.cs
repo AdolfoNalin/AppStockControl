@@ -75,12 +75,12 @@ public partial class Login : ContentPage
     #endregion
 
     #region Button_Clicked_SignUp
-    private void Button_Clicked_SignUp(object sender, EventArgs e)
+    private async void Button_Clicked_SignUp(object sender, EventArgs e)
     {
 		try
 		{
-            SignUp up = this.Handler.MauiContext.Services.GetService<SignUp>();
-            Application.Current.MainPage = new NavigationPage(up);
+			SignUp up = this.Handler.MauiContext.Services.GetService<SignUp>();
+			Navigation.PushAsync(up);	
         }
 		catch (Exception ex)
 		{
