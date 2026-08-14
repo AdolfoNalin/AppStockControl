@@ -55,4 +55,37 @@ public partial class ProductList : ContentPage
 		}
     }
     #endregion
-}
+
+    #region OnOpenCamareClicked
+    private async void OnOpenCameraClicked(object sender, EventArgs e)
+    {
+		try
+		{
+			if(MediaPicker.Default.IsCaptureSupported)
+			{
+				FileResult photo = await MediaPicker.Default.CapturePhotoAsync()
+					?? throw new NullReferenceException();
+
+				if (photo != null)
+				{
+					var localPath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+
+					using Stream sourceStream = await photo.OpenReadAsync();
+					using FileStream localStream = File.OpenWrite(localPath);
+					await sourceStream.CopyToAsync(localStream);
+
+					
+				}
+			}
+		}
+		catch(NullReferenceException nre)
+		{
+			DisplayAlert("", "Nenhum imagem foi encontrada", "Fechar");
+		}
+		catch (Exception ex)
+		{
+			DisplayAlert("Erro", MessageException.Message(ex), "Fechar");
+		}
+    }
+    #endregion
+} 

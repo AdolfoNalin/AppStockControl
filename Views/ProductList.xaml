@@ -24,6 +24,7 @@
                         x:Name="txtSeach"/>
                 </Border>
                 <Button
+                    Clicked="OnOpenCameraClicked"
                     BackgroundColor="Gray"
                     Grid.Column="1"
                     ImageSource="leitura_barras.png"/>
