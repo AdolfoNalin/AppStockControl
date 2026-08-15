@@ -20,7 +20,8 @@ public partial class ProductList : ContentPage
 		});
 	}
 
-	private async void UpdateData()
+    #region UpdateData
+    private async void UpdateData()
 	{
 		try
 		{
@@ -36,6 +37,7 @@ public partial class ProductList : ContentPage
 			DisplayAlert("Erro", MessageException.Message(ex), "Fechar");
 		}
 	}
+    #endregion
 
     #region Button_Clicked_AddProduct
     private void Button_Clicked_AddProduct(object sender, EventArgs e)
