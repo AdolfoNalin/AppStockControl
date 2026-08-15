@@ -1,4 +1,6 @@
-﻿namespace AppStockControl.Models
+﻿using System.Data;
+
+namespace AppStockControl.Models
 {
     public class Category
     {
@@ -7,7 +9,7 @@
         public string Name { get; set; }
         public string? Description { get; set; }
         public bool Active { get; set; } = true;
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
     }
 }
