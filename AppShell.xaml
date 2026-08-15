@@ -20,7 +20,7 @@
             Title="Categoria"
             Route="category"
             Icon="categoria.png"
-            ContentTemplate="{DataTemplate views:Category}"/>
+            ContentTemplate="{DataTemplate views:CategoryList}"/>
 
         <ShellContent
             Title="Menu"

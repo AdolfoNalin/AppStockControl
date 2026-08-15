@@ -42,7 +42,8 @@ namespace AppStockControl
             {
                 mauiAppBuilder.Services.AddTransient<Supplier>();
                 mauiAppBuilder.Services.AddTransient<Brand>();
-                mauiAppBuilder.Services.AddTransient<Category>();
+                mauiAppBuilder.Services.AddTransient<CategoryAdd>();
+                mauiAppBuilder.Services.AddTransient<CategoryList>();
                 mauiAppBuilder.Services.AddTransient<Login>();
                 mauiAppBuilder.Services.AddTransient<SignUp>();
                 mauiAppBuilder.Services.AddTransient<Menu>();
