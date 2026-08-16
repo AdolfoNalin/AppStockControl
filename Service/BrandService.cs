@@ -95,12 +95,12 @@ namespace AppStockControl.Service
                 }
                 else
                 {
-                    throw new ArgumentException(await response.Content.ReadAsStringAsync());
+                    throw new ArgumentNullException(await response.Content.ReadAsStringAsync());
                 }
             }
-            catch (ArgumentException ae)
+            catch (ArgumentNullException ane)
             {
-                throw ae;
+                throw ane;
             }
             catch (Exception ex)
             {
