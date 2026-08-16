@@ -38,7 +38,7 @@
             Title="Marcas"
             Route="Brand"
             Icon="marca.png"
-            ContentTemplate="{DataTemplate views:Brand}"/>
+            ContentTemplate="{DataTemplate views:BrandList}"/>
     </TabBar> 
 
 </Shell>
