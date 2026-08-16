@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppStockControl.Views.BrandAdd"
+             Title="BrandAdd">
+    <VerticalStackLayout>
+
+        <Grid RowDefinitions="Auto, Auto, Auto"
+              RowSpacing="30">
+
+            <Border StrokeShape="12"
+                    Grid.Row="0"
+                    HeightRequest="60"
+                    WidthRequest="200"
+                    HorizontalOptions="Center">
+
+                <Label Text="Cadastrar"
+                       FontSize="40"
+                       HorizontalOptions="Center"/>
+            </Border>
+
+            <Border Grid.Row="1"
+                    Margin="10"
+                    StrokeShape="12">
+
+                <Grid RowDefinitions="Auto, Auto, Auto"
+                      RowSpacing="30"
+                      Margin="10">
+
+                    <Entry Placeholder="Nome"
+                           Grid.Row="0"
+                           x:Name="txtName"
+                           HorizontalOptions="Fill"/>
+
+                    <Entry Placeholder="Descrição"
+                            Grid.Row="1"
+                            x:Name="txtDescription"
+                            HorizontalOptions="Fill"/>
+
+                    <Grid Grid.Row="2"
+                          ColumnSpacing="10"
+                          ColumnDefinitions="Auto, Auto">
+
+                        <RadioButton Content="Ativado"
+                                     IsChecked="True"
+                                     Grid.Column="0"
+                                     HorizontalOptions="Start"
+                                     x:Name="rbEnable"/>
+
+                        <RadioButton Content="Desativado"
+                                     Grid.Column="1"
+                                     HorizontalOptions="Center"
+                                     IsChecked="False"/>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Button Text="Salvar"
+                    Grid.Row="2"
+                    HorizontalOptions="Center"
+                    Clicked="Button_Clicked_Save"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

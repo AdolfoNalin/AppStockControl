@@ -6,7 +6,9 @@
     <VerticalStackLayout>
         <Grid RowDefinitions="Auto, Auto">
 
-            <Border Grid.Row="0">
+            <Border Grid.Row="0"
+                    StrokeShape="12"
+                    Margin="10">
                 <Grid>
 
                     <Label Text="Categoria"
