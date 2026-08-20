@@ -32,7 +32,7 @@
             Title="Fornecedor"
             Route="Supplier"
             Icon="fornecedor.png"
-            ContentTemplate="{DataTemplate views:Supplier}"/>
+            ContentTemplate="{DataTemplate views:SupplierList}"/>
 
         <ShellContent
             Title="Marcas"
