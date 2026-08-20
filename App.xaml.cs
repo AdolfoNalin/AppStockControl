@@ -12,7 +12,7 @@ namespace AppStockControl
             {
                 InitializeComponent();
                 MainPage = new SplashPage();
-                _ = InitializeAsync();
+                InitializeAsync();
             }
             catch (Exception ex)
             {
@@ -20,11 +20,22 @@ namespace AppStockControl
             }
         }
 
-        private async Task InitializeAsync()
+        private async void InitializeAsync()
         {
-            Guid userId = Guid.Parse(await SecureStorage.GetAsync("userId"));
-            bool restored = await AuthService.AuthUser(userId);
-            MainPage = restored ? new AppShell() : new Login();
+            try
+            {
+                Guid userId = Guid.Parse(await SecureStorage.GetAsync("userId"));
+                bool restored = await AuthService.AuthUser(userId);
+                MainPage = restored ? new AppShell() : new Login();
+            }
+            catch(ArgumentNullException ane)
+            {
+                throw ane;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
