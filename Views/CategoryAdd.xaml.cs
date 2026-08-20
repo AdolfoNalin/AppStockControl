@@ -2,6 +2,7 @@ using AppStockControl.DTOs;
 using AppStockControl.Helpers;
 using AppStockControl.Models;
 using AppStockControl.Service;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace AppStockControl.Views;
 
@@ -29,6 +30,8 @@ public partial class CategoryAdd : ContentPage
 			string message = await CategoryService.Create(category);
 
 			DisplayAlert("", message, "Fechar");
+
+			WeakReferenceMessenger.Default.Send<String>("Category");
 
 			Navigation.PopAsync();
 		}
