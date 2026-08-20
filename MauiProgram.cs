@@ -19,7 +19,7 @@ namespace AppStockControl
                 }).RegisterViews();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
 
@@ -40,15 +40,20 @@ namespace AppStockControl
         {
             try
             {
-                mauiAppBuilder.Services.AddTransient<Supplier>();
+                mauiAppBuilder.Services.AddTransient<SupplierAdd>();
+                mauiAppBuilder.Services.AddTransient<SupplierUpdate>();
+                mauiAppBuilder.Services.AddTransient<SupplierList>();
                 mauiAppBuilder.Services.AddTransient<BrandList>();
                 mauiAppBuilder.Services.AddTransient<BrandAdd>();
+                mauiAppBuilder.Services.AddTransient<BrandUpdate>();
                 mauiAppBuilder.Services.AddTransient<CategoryAdd>();
+                mauiAppBuilder.Services.AddTransient<CategoryUpdate>();
                 mauiAppBuilder.Services.AddTransient<CategoryList>();
                 mauiAppBuilder.Services.AddTransient<Login>();
                 mauiAppBuilder.Services.AddTransient<SignUp>();
                 mauiAppBuilder.Services.AddTransient<Menu>();
                 mauiAppBuilder.Services.AddTransient<ProductAdd>();
+                mauiAppBuilder.Services.AddTransient<ProductUpdate>();
                 mauiAppBuilder.Services.AddTransient<ProductList>();
                 mauiAppBuilder.Services.AddTransient<AppShell>();
                 mauiAppBuilder.Services.AddTransient<App>();
@@ -62,5 +67,7 @@ namespace AppStockControl
             }
         }
         #endregion
+
+
     }
 }
