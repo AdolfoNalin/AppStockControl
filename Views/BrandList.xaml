@@ -7,19 +7,19 @@
         <Grid RowDefinitions="Auto, Auto"
               RowSpacing="20"
               Margin="10">
-            
-        <Border StrokeShape="12"
+
+            <Border StrokeShape="12"
                 Grid.Row="0"
                 HorizontalOptions="Fill">
-            <Grid>
+                <Grid>
 
-                <Label Text="Marca"
+                    <Label Text="Marca"
                        FontSize="40"
                        FontAttributes="Bold"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"/>
 
-                <Button Text="+"
+                    <Button Text="+"
                         FontAttributes="Bold"
                         FontSize="40"
                         Background="Transparent"
@@ -27,8 +27,8 @@
                         VerticalOptions="Center"
                         HorizontalOptions="End"
                         Clicked="Button_Clicked_ScreenInsert"/>
-            </Grid>
-        </Border>
+                </Grid>
+            </Border>
 
 
             <Grid Grid.Row="1">
@@ -36,39 +36,57 @@
                     <CollectionView x:Name="cvBrand">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Grid RowSpacing="10"
-                                      RowDefinitions="Auto">
-                                    <Border StrokeShape="14"
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem Text="Atualizar"
+                                                    BackgroundColor="#3478F6"
+                                                    IconImageSource="atualizar.png"
+                                                    CommandParameter="{Binding .}" 
+                                                    Clicked="Button_Clicked_ScreenUpdate"/>
+
+                                            <SwipeItem Text="Desativar ou Ativar"
+                                                    BackgroundColor="#E24B4A"
+                                                    IconImageSource="desabilitado.png"
+                                                    CommandParameter="{Binding .}"
+                                                    Clicked="Button_ChangeStatus"/>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+
+                                    <Grid RowSpacing="10"
+                                          RowDefinitions="Auto">
+                                        <Border StrokeShape="14"
                                             Grid.Row="0">
 
-                                        <Grid RowDefinitions="Auto, Auto"  
-                                              ColumnDefinitions="Auto, *, Auto"
-                                              Margin="10"
-                                              Padding="5">
-                                            
-                                            <Label Text="{Binding Name}"
-                                                   Grid.Row="0"
-                                                   Grid.Column="0"
-                                                   HorizontalOptions="Start"/>
-                                            
-                                            <Label Text="{Binding Description}"
-                                                    Grid.Row="1"
-                                                    Grid.Column="0"
-                                                    HorizontalOptions="Start"/>
-                                            <Label Text="{Binding Active}"
-                                                    Grid.Row="0"
-                                                    Grid.Column="1"
-                                                    HorizontalOptions="End"/>
-                                        </Grid>
-                                    </Border>
-                                </Grid>
+                                            <Grid RowDefinitions="Auto, Auto"  
+                                                  ColumnDefinitions="Auto, *, Auto"
+                                                  Margin="10"
+                                                  Padding="5">
+
+                                                <Label Text="{Binding Name}"
+                                                       Grid.Row="0"
+                                                       Grid.Column="0"
+                                                       HorizontalOptions="Start"/>
+
+                                                <Label Text="{Binding Description}"
+                                                        Grid.Row="1"
+                                                        Grid.Column="0"
+                                                        HorizontalOptions="Start"/>
+                                                <Label Text="{Binding Active}"
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        HorizontalOptions="End"/>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </SwipeView>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                 </ScrollView>
-                
+
             </Grid>
-            
+
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

@@ -51,4 +51,43 @@ public partial class BrandList : ContentPage
 		}
     }
     #endregion
+
+    #region Button_Clicked_ScreenUpdate
+    private void Button_Clicked_ScreenUpdate(object sender, EventArgs e)
+    {
+		try
+		{
+			SwipeItem item = sender as SwipeItem;
+			Brand brand = item.CommandParameter as Brand;
+			BrandUpdate update = this.Handler.MauiContext.Services.GetService<BrandUpdate>();
+			update.SetEdit(brand);
+			Navigation.PushAsync(update);
+		}
+		catch (Exception ex)
+		{
+			DisplayAlert("Erro", MessageException.Message(ex), "Fechar");
+		}
+    }
+    #endregion
+
+    #region Button_ChangeStatus
+    private async void Button_ChangeStatus(object sender, EventArgs e)
+    {
+		try
+		{
+			SwipeItem item = sender as SwipeItem;
+			Brand brand = item.CommandParameter as Brand;
+
+			string message = await BrandService.ChangeSatus(brand.Id);
+
+			DisplayAlert("", message, "Fechar");
+
+			WeakReferenceMessenger.Default.Send<String>("Brand");
+		}
+		catch (Exception ex)
+		{
+			DisplayAlert("Erro", MessageException.Message(ex), "Fechar");
+		}
+    }
+    #endregion
 }
