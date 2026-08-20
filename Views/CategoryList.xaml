@@ -12,10 +12,10 @@
                 <Grid>
 
                     <Label Text="Categoria"
-                       FontSize="40"
-                       VerticalOptions="Center"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center"/>
+                           FontSize="40"
+                           VerticalOptions="Center"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"/>
 
                     <Button Text="+"
                             FontAttributes="Bold"
@@ -33,33 +33,51 @@
                     <CollectionView x:Name="cvCategory">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
-                                    <Border StrokeShape="12"
+                                <SwipeView>
+                                    <!-- Ações que aparecem ao arrastar -->
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem Text="Atualizar"
+                                                       BackgroundColor="#3478F6"
+                                                       IconImageSource="atualizar.png"
+                                                       CommandParameter="{Binding .}" 
+                                                       Clicked="Button_Clicked_ScreenUpdate"/>
+                                            
+                                            <SwipeItem Text="Desativar ou Ativar"
+                                                       BackgroundColor="#E24B4A"
+                                                       IconImageSource="desabilitado.png"
+                                                       CommandParameter="{Binding .}"
+                                                       Clicked="Button_ChangeStatus"/>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <Grid>
+                                        <Border StrokeShape="12"
                                             Margin="10"
                                             Padding="10">
 
-                                        <Grid ColumnDefinitions="Auto, Auto"
+                                            <Grid ColumnDefinitions="Auto, Auto"
                                               RowDefinitions="Auto, Auto"
                                               RowSpacing="10"
                                               ColumnSpacing="50">
 
-                                            <Label Text="{Binding Name}"
+                                                <Label Text="{Binding Name}"
                                                    Grid.Column="0"
                                                    Grid.Row="0"/>
 
-                                            <Label Text="{Binding Description}"
+                                                <Label Text="{Binding Description}"
                                                    Grid.Column="0"
                                                    Grid.Row="1"/>
 
-                                            <Label Text="{Binding Active}"
+                                                <Label Text="{Binding Active}"
                                                    VerticalOptions="Center"
                                                    HorizontalOptions="End"
                                                    Grid.Column="1"
                                                    Grid.Row="1"/>
 
-                                        </Grid>
-                                    </Border>
-                                </Grid>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </SwipeView>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
