@@ -90,4 +90,46 @@ public partial class ProductList : ContentPage
 		}
     }
     #endregion
-} 
+
+    #region Button_Clciked_ScreenUpdate
+    private void Button_Clciked_ScreenUpdate(object sender, EventArgs e)
+    {
+		try
+		{
+			SwipeItem item = sender as SwipeItem;
+			Product product = item.CommandParameter as Product;
+
+			ProductUpdate update = this.Handler.MauiContext.Services.GetService<ProductUpdate>();
+			update.SetEdit(product);
+
+			Navigation.PushAsync(update);
+
+		}
+		catch (Exception ex)
+		{
+			DisplayAlert("Erro", MessageException.Message(ex), "Fechar");
+		}
+    }
+    #endregion
+
+    #region Button_Clicked_ChangeStatus
+    private async void Button_Clicked_ChangeStatus(object sender, EventArgs e)
+    {
+		try
+		{
+			SwipeItem item = sender as SwipeItem;
+			Product product = item.CommandParameter as Product;
+
+			string message = await ProductService.ChangeStatus(product.Id);
+
+			DisplayAlert("", message, "Fechar");
+
+			WeakReferenceMessenger.Default.Send<String>("Product");
+		}
+		catch (Exception ex)
+		{
+			DisplayAlert("Erro", MessageException.Message(ex), "Fechar");
+		}
+    }
+    #endregion
+}
