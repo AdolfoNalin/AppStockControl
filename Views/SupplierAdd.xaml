@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppStockControl.Views.SupplierAdd"
+              xmlns:behaviors="clr-namespace:AppStockControl.Helpers"
+             Title="Supplier">
+
+    <VerticalStackLayout>
+
+        <Grid RowDefinitions="Auto, *, Auto"
+              RowSpacing="30"
+              Margin="10">
+
+            <Border StrokeShape="14"
+                    Grid.Row="0">
+                <Grid>
+
+                    <Label Text="Autalizar"
+                           Grid.Column="1"
+                           FontSize="40"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontAttributes="Bold"/>
+
+                    <Button Text=" X"
+                            TextColor="White"
+                            Grid.Column="2"
+                            FontSize="40"
+                            Background="Transparent"
+                            VerticalOptions="Center"
+                            HorizontalOptions="End"
+                            FontAttributes="Bold"
+                            Clicked="Button_Clicked_Cancel"/>
+                </Grid>
+            </Border>
+
+            <Border StrokeShape="15"
+                    Padding="10"
+                    Grid.Row="1">
+
+                <ScrollView>
+
+                    <Grid Grid.Row="1"
+                          Margin=" 5"
+                          RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+
+                        <Grid RowDefinitions="Auto, Auto, Auto"
+                              Grid.Row="0"
+                              RowSpacing="10">
+
+                            <Entry Placeholder="Nome"
+                               x:Name="txtName"
+                               Grid.Row="0"/>
+
+                            <Entry Placeholder="Nome Fantasia"
+                               x:Name="txtTrandName"
+                               Grid.Row="1"/>
+
+                            <Grid Grid.Row="2"
+                                  ColumnSpacing="15"
+                                  ColumnDefinitions="Auto, Auto, Auto">
+
+                                <Entry Placeholder="Cnpj: 00.000.000/0000-00"
+                                       x:Name="txtCnpj"
+                                       IsSpellCheckEnabled="False"
+                                       IsTextPredictionEnabled="False"
+                                       Keyboard="Text">
+
+                                    <Entry.Behaviors>
+                                        <behaviors:MaskBehavior Mask="##.###.###/####-##"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+
+                                <Entry Placeholder="IE: 000.000.000.000"
+                                       x:Name="txtStateRegistration"
+                                       Grid.Column="1"
+                                       IsSpellCheckEnabled="False"
+                                       IsTextPredictionEnabled="False">
+                                    <Entry.Behaviors>
+                                        <behaviors:MaskBehavior Mask="###.###.###.###"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+
+                                <DatePicker x:Name="dpDate"
+                                            Grid.Column="2"/>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Row="3"
+                              RowDefinitions="Auto, Auto, Auto, Auto">
+
+                            <Grid Grid.Row="0"
+                                  ColumnDefinitions="*, Auto">
+                                <Entry Grid.Column="0"
+                                       Placeholder="Email"
+                                       x:Name="txtEmail"
+                                       HorizontalOptions="Fill"/>
+
+                                <Entry Grid.Column="1"
+                                       Placeholder="Telefone: (DD) 0000-0000"
+                                       x:Name="txtPhone">
+
+                                    <Entry.Behaviors>
+                                        <behaviors:MaskBehavior Mask="(##) ####-####"/>
+                                    </Entry.Behaviors>
+                                    
+                                </Entry>
+                            </Grid>
+
+                            <Grid Grid.Row="1"
+                                  ColumnDefinitions="Auto, *">
+
+                                <Entry Grid.Column="0"
+                                       x:Name="txtCellPhone"
+                                       Placeholder="Celular: (DD) 00000-0000">
+
+                                    <Entry.Behaviors>
+                                        <behaviors:MaskBehavior Mask="(##) #####-####" />
+                                    </Entry.Behaviors>
+                                </Entry>
+
+                                <Entry Grid.Column="1"
+                                       HorizontalOptions="Fill"
+                                       Placeholder="Nome do Contato"
+                                       x:Name="txtConteactName"/>
+                            </Grid>
+
+                            <Grid Grid.Row="2"
+                                  ColumnDefinitions="Auto, Auto, *">
+
+                                <Entry Placeholder="CEP: 00000-000"
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                       x:Name="txtZipCode"
+                                       Completed="OnEntryCompleted">
+
+                                    <Entry.Behaviors>
+                                        <behaviors:MaskBehavior Mask="#####-###"/>
+                                    </Entry.Behaviors>
+                                    
+                                </Entry>
+
+                                <Picker Title="Selecione o UF"
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        x:Name="pkUf">
+
+                                </Picker>
+
+                                <Entry Placeholder="Cidade"
+                                       Grid.Row="0"
+                                       Grid.Column="2"
+                                       x:Name="txtCity"/>
+                            </Grid>
+
+                            <Grid Grid.Row="3"
+                                  RowDefinitions="Auto, Auto, Auto">
+
+                                <Entry Placeholder="Bairro"
+                                       Grid.Row="0"
+                                       HorizontalOptions="Fill"
+                                       x:Name="txtDistrict"/>
+
+                                <Grid Grid.Row="1"
+                                      ColumnDefinitions="*, Auto">
+
+                                    <Entry Placeholder="Rua/Avenida"
+                                           Grid.Column="0"
+                                           HorizontalOptions="Fill"
+                                           x:Name="txtStreet"/>
+
+                                    <Entry Placeholder="Número"
+                                           Grid.Column="1"
+                                           HorizontalOptions="End"
+                                           x:Name="txtNumber"/>
+                                </Grid>
+
+                                <Entry Grid.Row="2"
+                                       Placeholder="Complemente"
+                                       x:Name="txtComplement"/>
+                            </Grid>
+
+                        </Grid>
+
+                        <Grid Grid.Row="4"
+                              RowDefinitions="Auto, Auto">
+
+                            <Entry Placeholder="Observação"
+                                   Grid.Column="0"
+                                   x:Name="txtObservation"/>
+
+                            <Grid Grid.Row="1"
+                                  ColumnSpacing="10"
+                                  ColumnDefinitions="Auto, Auto">
+                                
+                                <RadioButton Grid.Column="0"
+                                             Content="Ativado"
+                                             IsChecked="True"
+                                             x:Name="rbEneble"/>
+
+                                <RadioButton Grid.Column="1"
+                                             Content="Desativado"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </ScrollView>
+            </Border>
+
+            <Button Grid.Row="3"
+                    HorizontalOptions="Center"
+                    Text="Salvar"
+                    Clicked="Button_Clicked_Save"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
