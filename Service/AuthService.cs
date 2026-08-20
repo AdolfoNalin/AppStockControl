@@ -9,7 +9,7 @@ namespace AppStockControl.Service
         {
 			try
 			{
-				User user = await UserService.GetById(id);
+				User user = await UserService.GetById(id) ?? throw new ArgumentException();
 				LoginRequest loginRequest = new LoginRequest()
 				{
 					Login = user.Name,
@@ -29,6 +29,10 @@ namespace AppStockControl.Service
 
 					return true;
 				}
+			}
+			catch(ArgumentException)
+			{
+				return false;
 			}
 			catch (Exception ex)
 			{
