@@ -18,7 +18,7 @@ namespace AppStockControl.Service
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="Exception"></exception>
-        public async Task<string> ChangeStatus(Guid id)
+        public static async Task<string> ChangeStatus(Guid id)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace AppStockControl.Service
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="Exception"></exception>
-        public async Task<string> Create(Supplier supplier)
+        public static async Task<string> Create(Supplier supplier)
         {
             HttpClient client = ConnectionLocalhost.ConnectionPostgree();
             HttpResponseMessage response = await client.PostAsJsonAsync($"{_name}", supplier);
@@ -85,7 +85,7 @@ namespace AppStockControl.Service
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<ObservableCollection<Supplier>> GetAll()
+        public static async Task<ObservableCollection<Supplier>> GetAll()
         {
             try
             {
@@ -123,7 +123,7 @@ namespace AppStockControl.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<Supplier> GetById(Guid id)
+        public static async Task<Supplier> GetById(Guid id)
         {
             try
             {
@@ -161,7 +161,7 @@ namespace AppStockControl.Service
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public async Task<ObservableCollection<Supplier>> GetByStatus(bool value)
+        public static async Task<ObservableCollection<Supplier>> GetByStatus(bool value)
         {
             try
             {
@@ -200,12 +200,12 @@ namespace AppStockControl.Service
         /// <param name="supplier"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<string> Update(Supplier supplier)
+        public static async Task<string> Update(Supplier supplier)
         {
             try
             {
                 HttpClient client = ConnectionLocalhost.ConnectionPostgree();
-                HttpResponseMessage response = await client.PutAsJsonAsync($"{_name}", supplier);
+                HttpResponseMessage response = await client.PutAsJsonAsync($"{_name}/Update", supplier);
 
                 if (response.IsSuccessStatusCode)
                 {
