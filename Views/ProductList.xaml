@@ -15,13 +15,14 @@
                 ColumnDefinitions="*, Auto">
 
                 <Border
-                    HorizontalOptions="FillAndExpand"
+                    HorizontalOptions="Fill"
                     StrokeShape="20"
                     Grid.Column="0">
                     <Entry
-                        HorizontalOptions="FillAndExpand"
+                        HorizontalOptions="Fill"
                         Placeholder="Pesquise o produto"
-                        x:Name="txtSeach"/>
+                        x:Name="txtSeach"
+                        TextChanged="txtSearch_TextChange"/>
                 </Border>
                 <Button
                     Clicked="OnOpenCameraClicked"
@@ -60,6 +61,7 @@
                                                        IconImageSource="atualizar.png"
                                                        CommandParameter="{Binding .}"
                                                        Clicked="Button_Clciked_ScreenUpdate"/>
+                                            
                                             <SwipeItem Text="Deletar"
                                                        BackgroundColor="#E24B4A"
                                                        IconImageSource="desabilitado.png"

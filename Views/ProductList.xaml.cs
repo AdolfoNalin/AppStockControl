@@ -132,4 +132,20 @@ public partial class ProductList : ContentPage
 		}
     }
     #endregion
+
+    #region txtSearch_TextChange
+    private async void txtSearch_TextChange(object sender, TextChangedEventArgs e)
+    {
+		try
+		{
+			string value = txtSeach.Text;
+			ObservableCollection<Product> products = await ProductService.GetSmart(value);
+			cvProduct.ItemsSource = products;
+		}
+		catch (Exception ex)
+		{
+			DisplayAlert("Erro", MessageException.Message(ex), "Fechar");
+		}
+    }
+    #endregion
 }
