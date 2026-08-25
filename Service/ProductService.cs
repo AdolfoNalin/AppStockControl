@@ -135,7 +135,7 @@ namespace AppStockControl.Service
                 }
                 else
                 {
-                    throw new ArgumentNullException(await response.Content.ReadAsStringAsync());
+                   throw new Exception(await response.Content.ReadAsStringAsync());
                 }
             }
             catch(ArgumentNullException ae)
@@ -240,6 +240,36 @@ namespace AppStockControl.Service
             catch (ArgumentNullException ae)
             {
                 throw ae;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
+        #region GetSmart
+        /// <summary>
+        /// Method resopnsible for Search the product in database
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static async Task<ObservableCollection<Product>> GetSmart(string value)
+        {
+            try
+            {
+                HttpClient client = ConnectionLocalhost.ConnectionPostgree();
+                HttpResponseMessage response = await client.GetAsync($"Product/Smart?value={value}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    ObservableCollection<Product> products = JsonConvert.DeserializeObject<ObservableCollection<Product>>(await response.Content.ReadAsStringAsync());
+                    return products;
+                }
+                else
+                {
+                    throw new Exception(await response.Content.ReadAsStringAsync());
+                }
             }
             catch (Exception ex)
             {
