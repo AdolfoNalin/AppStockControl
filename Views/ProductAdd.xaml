@@ -37,64 +37,79 @@
                         x:Name="txtDescription"
                         HorizontalOptions="Fill"
                         Grid.Column="0"
-                        Placeholder="Decirção"/>
+                        Placeholder="Decrição"/>
 
                     <Entry
                         x:Name="txtStockQuantity"
                         HorizontalOptions="End"
                         Grid.Column="1"
-                        Placeholder="Quantidade"/>
+                        Placeholder="Quantidade"
+                        Keyboard="Numeric"/>
                 </Grid>
 
                 <Grid
                     ColumnSpacing="9"
-                    ColumnDefinitions="Auto, Auto, Auto, Auto"
+                    ColumnDefinitions="Auto, Auto, Auto, Auto, Auto"
                     Grid.Row="2">
 
                     <Entry
                         HorizontalOptions="Center"
                         Grid.Column="0"
                         x:Name="txtMinimumStock"
-                        Placeholder="Qtd Min."/>
+                        Placeholder="Qtd Min."
+                        Keyboard="Numeric"/>
 
                     <Entry
                         HorizontalOptions="Center"
                         Grid.Column="1"
                         x:Name="txtMaximumStock"
-                        Placeholder="Qtd Max."/>
+                        Placeholder="Qtd Max."
+                        Keyboard="Numeric"/>
 
                     <Entry
                         HorizontalOptions="Center"
                         Grid.Column="2"
                         x:Name="txtBuyPrice"
-                        Placeholder="Valor Compra"/>
+                        Placeholder="Valor Compra"
+                        Keyboard="Numeric"/>
 
                     <Entry
                         HorizontalOptions="Center"
                         Grid.Column="3"
                         x:Name="txtSalePrice"
-                        Placeholder="Valor Venda"/>
+                        Placeholder="Valor Venda"
+                        Keyboard="Numeric"/>
+
+                    <Entry
+                         HorizontalOptions="Center"
+                         Grid.Column="4"
+                         x:Name="ProfitMargin"
+                         Placeholder="% Lucro"
+                        IsEnabled="False"/>
                     <Grid/>
 
                 </Grid>
 
                 <Grid
                     ColumnSpacing="10"
-                    Grid.Row="3">
+                    Grid.Row="3"
+                    ColumnDefinitions="Auto, Auto, Auto, Auto">
 
                     <Picker 
                         HorizontalOptions="Start"
                         Grid.Column="0"
                         x:Name="pkCategory"
                         Title="Selecione Categoria"
-                        SelectedItem="{Binding ItemSelecionado}">
+                        SelectedItem="{Binding .}"
+                        ItemDisplayBinding="{Binding Name}">
                     </Picker>
 
                     <Entry
                         HorizontalOptions="Center"
                         Grid.Column="1"
                         x:Name="txtBarCode"
-                        Placeholder="Código de Barras"/>
+                        Placeholder="Código de Barras"
+                        Keyboard="Numeric"/>
 
                     <DatePicker
                         HorizontalOptions="End"
@@ -102,23 +117,37 @@
                         x:Name="dpCreateAndUpdate"/>
                 </Grid>
 
-                <Grid
-                    ColumnSpacing="10"
-                    Grid.Row="4">
+                <Grid ColumnSpacing="10"
+                        ColumnDefinitions="Auto, Auto, Auto"
+                        Grid.Row="4">
                     <Picker
+                        Grid.Column="0"
                         HorizontalOptions="Start"
                         Title="Selecione Marca"
                         x:Name="pkBrand"
-                        SelectedItem="{Binding .}">
+                        SelectedItem="{Binding .}"
+                        ItemDisplayBinding="{Binding Name}">
                     </Picker>
 
                     <Picker
+                        Grid.Column="1"
                         HorizontalOptions="Center"
+                        ItemDisplayBinding="{Binding Name}"
                         SelectedItem="{Binding .}"
                         x:Name="pkUniType"
-                        Title="Selecione Unidade Medida">
+                        Title="Selecione Uni. Medida">
 
                     </Picker>
+
+                    <Picker HorizontalOptions="End"
+                            Grid.Column="2"
+                            ItemDisplayBinding="{Binding Name}"
+                            x:Name="pkSupplier"
+                            SelectedItem="{Binding .}"
+                            Title="Selecione o Fornecedor">
+                        
+                    </Picker>
+                    
                 </Grid>
 
                 <Entry
