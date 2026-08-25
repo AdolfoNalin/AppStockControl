@@ -10,110 +10,148 @@
                 Margin="10">
 
             <Grid Margin="10"
-                 RowSpacing="14"
-                 RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
-                
+                  RowSpacing="14"
+                  RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+
                 <Border WidthRequest="120"
                         HeightRequest="50"
                         Grid.Row="0"
                         Margin="10"
                         StrokeShape="10"
                         HorizontalOptions="Center">
+
                     <Label FontAttributes="Bold"
                             VerticalOptions="Center"
                             FontSize="20"
                             HorizontalOptions="Center"
-                            Text="Cadastrar"/>
+                            Text="Atualizar"/>
                 </Border>
 
                 <Grid ColumnSpacing="8"
-                    Grid.Row="1"
-                    ColumnDefinitions="*, Auto">
-                    
+                      Grid.Row="1"
+                      ColumnDefinitions="*, Auto">
+
                     <Entry x:Name="txtDescription"
-                             HorizontalOptions="Fill"
-                             Grid.Column="0"
-                             Placeholder="Decirção"/>
+                            HorizontalOptions="Fill"
+                            Grid.Column="0"
+                            Placeholder="Decrição"/>
 
                     <Entry x:Name="txtStockQuantity"
-                             HorizontalOptions="End"
-                             Grid.Column="1"
-                             Placeholder="Quantidade"/>
+                            HorizontalOptions="End"
+                            Grid.Column="1"
+                            Placeholder="Quantidade"
+                           Keyboard="Numeric"/>
                 </Grid>
 
                 <Grid ColumnSpacing="9"
-                        ColumnDefinitions="Auto, Auto, Auto, Auto"
-                        Grid.Row="2">
+                      ColumnDefinitions="Auto, Auto, Auto, Auto, Auto"
+                      Grid.Row="2">
 
                     <Entry HorizontalOptions="Center"
                             Grid.Column="0"
                             x:Name="txtMinimumStock"
-                            Placeholder="Qtd Min."/>
+                            Placeholder="Qtd Min."
+                           Keyboard="Numeric"/>
 
                     <Entry HorizontalOptions="Center"
-                            Grid.Column="1"
-                            x:Name="txtMaximumStock"
-                            Placeholder="Qtd Max."/>
+                          Grid.Column="1"
+                          x:Name="txtMaximumStock"
+                          Placeholder="Qtd Max."
+                           Keyboard="Numeric"/>
 
                     <Entry HorizontalOptions="Center"
-                            Grid.Column="2"
-                            x:Name="txtBuyPrice"
-                            Placeholder="Valor Compra"/>
+                          Grid.Column="2"
+                          x:Name="txtBuyPrice"
+                          Placeholder="Valor Compra"
+                           Keyboard="Numeric"/>
 
                     <Entry HorizontalOptions="Center"
-                            Grid.Column="3"
-                            x:Name="txtSalePrice"
-                            Placeholder="Valor Venda"/>
+                          Grid.Column="3"
+                          x:Name="txtSalePrice"
+                          Placeholder="Valor Venda"
+                           Keyboard="Numeric"/>
+
+                    <Entry HorizontalOptions="Center"
+                            Grid.Column="4"
+                            x:Name="ProfitMargin"
+                            Placeholder="% Lucro"
+                           IsEnabled="False"/>
                     <Grid/>
 
                 </Grid>
 
-                <Grid ColumnSpacing="10"
-                      Grid.Row="3">
+                <Grid
+                  ColumnSpacing="10"
+                  Grid.Row="3"
+                  ColumnDefinitions="Auto, Auto, Auto, Auto">
 
-                    <Picker HorizontalOptions="Start"
-                            Grid.Column="0"
-                            x:Name="pkCategory"
-                            Title="Selecione Categoria"
-                            SelectedItem="{Binding ItemSelecionado}">
+                    <Picker 
+                      HorizontalOptions="Start"
+                      Grid.Column="0"
+                      x:Name="pkCategory"
+                      Title="Selecione Categoria"
+                      SelectedItem="{Binding .}"
+                      ItemDisplayBinding="{Binding Name}">
                     </Picker>
 
-                    <Entry HorizontalOptions="Center"
-                            Grid.Column="1"
-                            x:Name="txtBarCode"
-                            Placeholder="Código de Barras"/>
+                    <Entry
+                        HorizontalOptions="Center"
+                        Grid.Column="1"
+                        x:Name="txtBarCode"
+                        Placeholder="Código de Barras"
+                        Keyboard="Numeric"/>
 
-                    <DatePicker HorizontalOptions="End"
-                                Grid.Column="2"
-                                x:Name="dpCreateAndUpdate"/>
+                    <DatePicker
+                      HorizontalOptions="End"
+                      Grid.Column="2"
+                      x:Name="dpCreateAndUpdate"/>
                 </Grid>
 
                 <Grid ColumnSpacing="10"
-                        Grid.Row="4">
-                    <Picker HorizontalOptions="Start"
-                             Title="Selecione Marca"
-                             x:Name="pkBrand"
-                             SelectedItem="{Binding .}">
+                      ColumnDefinitions="Auto, Auto, Auto"
+                      Grid.Row="4">
+                    <Picker
+                      Grid.Column="0"
+                      HorizontalOptions="Start"
+                      Title="Selecione Marca"
+                      x:Name="pkBrand"
+                      SelectedItem="{Binding .}"
+                      ItemDisplayBinding="{Binding Name}">
                     </Picker>
 
-                    <Picker HorizontalOptions="Center"
-                            SelectedItem="{Binding .}"
-                            x:Name="pkUniType"
-                            Title="Selecione Unidade Medida">
+                    <Picker
+                      Grid.Column="1"
+                      HorizontalOptions="Center"
+                      ItemDisplayBinding="{Binding Name}"
+                      SelectedItem="{Binding .}"
+                      x:Name="pkUniType"
+                      Title="Selecione Uni. Medida">
 
                     </Picker>
+
+                    <Picker HorizontalOptions="End"
+                          Grid.Column="2"
+                          ItemDisplayBinding="{Binding Name}"
+                          x:Name="pkSupplier"
+                          SelectedItem="{Binding .}"
+                          Title="Selecione o Fornecedor">
+
+                    </Picker>
+
                 </Grid>
 
-                <Entry x:Name="txtObs"
-                        Grid.Row="5"
-                        Placeholder="Observação"/>
+                <Entry
+                  x:Name="txtObs"
+                  Grid.Row="5"
+                  Placeholder="Observação"/>
 
-                <ImageButton x:Name="ibProduct"
-                             HeightRequest="100"
-                             WidthRequest="100"
-                             Grid.Row="6"
-                             Clicked="ImageButton_Clicked_SelectImage_Update"
-                             Source="adicionar_imagem.png"/>
+                <ImageButton
+                  x:Name="ibProduct"
+                  HeightRequest="100"
+                  WidthRequest="100"
+                  Grid.Row="6"
+                  Clicked="ImageButton_Clicked_SelectImage"
+                  Source="adicionar_imagem.png"/>
             </Grid>
         </Border>
 
@@ -121,8 +159,8 @@
                 Padding="10"
                 HorizontalOptions="Center"
                 Text="Salvar"
-                Clicked="Button_Clicked_Update"
+                Clicked="Button_Clicked_Save"
                 FontAttributes="Bold"
                 Grid.Row="7"/>
-    </VerticalStackLayout>
+</VerticalStackLayout>
 </ContentPage>
