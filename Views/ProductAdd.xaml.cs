@@ -1,20 +1,38 @@
+using AppStockControl.DTOs;
 using AppStockControl.Helpers;
 using AppStockControl.Models;
 using AppStockControl.Service;
+using CommunityToolkit.Mvvm.Messaging;
+using System.Collections.ObjectModel;
 
 namespace AppStockControl.Views;
 
 public partial class ProductAdd : ContentPage
 {
     private string _selectedImagePath = null;
+
     public ProductAdd()
     {
         InitializeComponent();
-        Task.Run(async () =>
+        UpdateData();
+    }
+
+    private async void UpdateData()
+    {
+        try
         {
-            pkCategory.ItemsSource = await CategoryService.GetAll();
-            pkBrand.ItemsSource = await BrandService.GetAll();
-        });
+            ObservableCollection<Brand> brands = await BrandService.GetAll();
+            ObservableCollection<Supplier> suppliers = await SupplierService.GetAll();
+            ObservableCollection<Category> categorys = await CategoryService.GetAll();
+
+            pkCategory.ItemsSource = categorys.Where(c => c.Active == true).ToList();
+            pkSupplier.ItemsSource = suppliers.Where(c => c.Active == true).ToList();
+            pkBrand.ItemsSource = brands.Where(c => c.Active == true).ToList();
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Erro", MessageException.Message(ex), "Fechar");
+        }
     }
 
     #region Button_Clicked_Cancel
@@ -29,23 +47,35 @@ public partial class ProductAdd : ContentPage
     {
         try
         {
+            Category category = pkCategory.SelectedItem as Category;
+            Brand brand = pkBrand.SelectedItem as Brand;
+            Supplier supplier = pkSupplier.SelectedItem as Supplier;
+
             Product product = new Product()
             {
-                CategoryId = Guid.Parse(pkCategory.Id.ToString()),
-                BrandId = Guid.Parse(pkBrand.Id.ToString()),
+                BrandId = brand.Id,
+                UserId = UserSession.Id,
+                SupplierId = supplier.Id,
+                CategoryId = category.Id,
                 Description = txtDescription.Text,
                 StockQuantity = int.Parse(txtStockQuantity.Text),
                 MaximumStock = int.Parse(txtMaximumStock.Text),
                 MinimumStock = int.Parse(txtMinimumStock.Text),
                 BuyPrice = Decimal.Parse(txtBuyPrice.Text),
                 SalePrice = Decimal.Parse(txtSalePrice.Text),
-                CreatedAt = dpCreateAndUpdate.Date.Value,
+                CreatedAt = dpCreateAndUpdate.Date.Value.ToUniversalTime(),
                 Observation = txtObs.Text,
                 ImagePath = _selectedImagePath,
-                UnitType = (UnitType)int.Parse(pkUniType.Id.ToString())
+                //UnitType = (UnitType)int.Parse(pkUniType.Id.ToString())
             };
 
-            await ProductService.Create(product);
+            string message = await ProductService.Create(product);
+
+            DisplayAlert("Erro", message, "Fechar");
+
+            WeakReferenceMessenger.Default.Send<String>("Product");
+
+            Navigation.PopAsync();
         }
         catch (ArgumentNullException ane)
         {
@@ -54,9 +84,8 @@ public partial class ProductAdd : ContentPage
         catch (Exception ex)
         {
             DisplayAlert("Erro", MessageException.Message(ex), "Fechar");
-            throw;
         }
-    }
+    }   
     #endregion
 
     #region ImageButton_Clicked_SelectImage
