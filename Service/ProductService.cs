@@ -277,5 +277,43 @@ namespace AppStockControl.Service
             }
         }
         #endregion
+
+        #region GetByDate
+        /// <summary>
+        /// Method resopnsible for Search the product in database
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static async Task<ObservableCollection<Product>> GetByDate(string startDate, string endDate)
+        {
+            try
+            {
+                HttpClient client = ConnectionLocalhost.ConnectionPostgree();
+                HttpResponseMessage response = await client.GetAsync($"Product/ByDate?startDate={startDate}&endDate={endDate}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    ObservableCollection<Product> products = JsonConvert.DeserializeObject<ObservableCollection<Product>>(await response.Content.ReadAsStringAsync());
+                    return products;
+                }
+                else if(response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    throw new ArgumentNullException(await response.Content.ReadAsStringAsync());
+                }
+                else
+                {
+                    throw new Exception(await response.Content.ReadAsStringAsync());
+                }
+            }
+            catch(ArgumentNullException ane)
+            {
+                throw ane;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
     }
 }
