@@ -7,6 +7,32 @@
 
 
         <Border
+            Grid.Row="0"
+            Margin="10"
+            WidthRequest="160"
+            StrokeShape="10"
+            HorizontalOptions="Center">
+
+            <Grid ColumnDefinitions="Auto, Auto"
+                    ColumnSpacing="5">
+
+                <ImageButton Source="voltar.png"
+                             Grid.Column="0"
+                             Clicked="ImageButton_Back"
+                             HorizontalOptions="Start"
+                             BackgroundColor="Transparent"/>
+
+                <Label FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    FontSize="20"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    Text="Cadastrar"/>
+            </Grid>
+        </Border>
+
+
+        <Border
             StrokeShape="12"
             Margin="10">
 
@@ -14,25 +40,12 @@
                 Margin="10"
                 RowSpacing="14"
                 RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
-                <Border
-                    WidthRequest="120"
-                    HeightRequest="50"
-                    Grid.Row="0"
-                    Margin="10"
-                    StrokeShape="10"
-                    HorizontalOptions="Center">
-                    <Label
-                        FontAttributes="Bold"
-                        VerticalOptions="Center"
-                        FontSize="20"
-                        HorizontalOptions="Center"
-                        Text="Cadastrar"/>
-                </Border>
 
                 <Grid
                     ColumnSpacing="8"
                     Grid.Row="1"
                     ColumnDefinitions="*, Auto">
+
                     <Entry
                         x:Name="txtDescription"
                         HorizontalOptions="Fill"
@@ -132,7 +145,6 @@
                     <Picker
                         Grid.Column="1"
                         HorizontalOptions="Center"
-                        ItemDisplayBinding="{Binding Name}"
                         SelectedItem="{Binding .}"
                         x:Name="pkUniType"
                         Title="Selecione Uni. Medida">
@@ -145,9 +157,9 @@
                             x:Name="pkSupplier"
                             SelectedItem="{Binding .}"
                             Title="Selecione o Fornecedor">
-                        
+
                     </Picker>
-                    
+
                 </Grid>
 
                 <Entry
