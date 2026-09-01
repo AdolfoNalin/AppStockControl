@@ -3,126 +3,163 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppStockControl.Views.ProductList"
              Title="Product">
-    <VerticalStackLayout>
+    <Grid
+        RowSpacing="10"
+        Padding="10"
+        Margin="10"
+        RowDefinitions="Auto, Auto, *, Auto">
+
         <Grid
-            RowSpacing="10"
-            Padding="10"
-            Margin="10"
-            RowDefinitions="Auto, Auto, *, Auto">
+            Grid.Row="0"
+            ColumnDefinitions="*, Auto">
 
-            <Grid
-                Grid.Row="0"
-                ColumnDefinitions="*, Auto">
+            <Border
+                HorizontalOptions="Fill"
+                StrokeShape="20"
+                Grid.Column="0">
 
-                <Border
+                <Entry
                     HorizontalOptions="Fill"
-                    StrokeShape="20"
-                    Grid.Column="0">
-                    <Entry
-                        HorizontalOptions="Fill"
-                        Placeholder="Pesquise o produto"
-                        x:Name="txtSeach"
-                        TextChanged="txtSearch_TextChange"/>
-                </Border>
-                <Button
-                    Clicked="OnOpenCameraClicked"
-                    BackgroundColor="Gray"
-                    Grid.Column="1"
-                    ImageSource="leitura_barras.png"/>
+                    Placeholder="Pesquise o produto"
+                    x:Name="txtSeach"
+                    TextChanged="txtSearch_TextChange"/>
+            </Border>
+
+            <Button
+                Clicked="OnOpenCameraClicked"
+                BackgroundColor="Gray"
+                Grid.Column="1"
+                ImageSource="leitura_barras.png"/>
+        </Grid>
+
+        <Grid   
+            Grid.Row="1"
+            ColumnSpacing="10"
+            ColumnDefinitions="Auto, Auto, Auto">
+
+            <Label
+                VerticalOptions="Center"
+                FontAttributes="Bold"
+                Text="Filtro"/>
+
+            <Picker 
+                x:Name="pkCategory"
+                HorizontalOptions="Center"
+                Grid.Column="1"
+                Title="Selecione a Categoria"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedIndexChanged="Picker_SelectedIndexChanged_Category">
+
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Nenhum</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Grid ColumnDefinitions="Auto, Auto, Auto, Auto"
+                  Grid.Column="2">
+
+                <Label Text="Data:"
+                        Grid.Column="0"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        FontAttributes="Bold"/>
+
+                <CheckBox Grid.Column="1"
+                          x:Name="cbIsDateFilter"
+                          CheckedChanged="CheckBox_CheckedChanged_EnableDate"/>
+
+                <DatePicker x:Name="dpStartDate"
+                            Grid.Column="2"/>
+
+                <DatePicker x:Name="dpEndDate"
+                            Grid.Column="3"
+                            DateSelected="DatePicker_DataSelected_SeachDate"/>
+
             </Grid>
 
-            <Grid
+        </Grid>
 
-                Grid.Row="1"
-                ColumnDefinitions="*, Auto">
-                <Label
-                    FontAttributes="Bold"
-                    Text="Categoria"/>
-                <Button
-                    BackgroundColor="LightGray"
-                    Grid.Column="1"
-                    Text="Add"
-                    FontAttributes="Bold"/>
-            </Grid>
-
-            <Grid
-                Grid.Row="2">
-                <ScrollView>
-                    <CollectionView
+        <Grid
+            Grid.Row="2">
+            <ScrollView>
+                <CollectionView
                         x:Name="cvProduct">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <SwipeView>
-                                    <!-- Ações que aparecem ao arrastar -->
-                                    <SwipeView.RightItems>
-                                        <SwipeItems>
-                                            <SwipeItem Text="Atualizar"
-                                                       BackgroundColor="#3478F6"
-                                                       IconImageSource="atualizar.png"
-                                                       CommandParameter="{Binding .}"
-                                                       Clicked="Button_Clciked_ScreenUpdate"/>
-                                            
-                                            <SwipeItem Text="Deletar"
-                                                       BackgroundColor="#E24B4A"
-                                                       IconImageSource="desabilitado.png"
-                                                       CommandParameter="{Binding .}"
-                                                       Clicked="Button_Clicked_ChangeStatus"/>
-                                        </SwipeItems>
-                                    </SwipeView.RightItems>
-                                    <Grid>
-                                        <Border
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <!-- Ações que aparecem ao arrastar -->
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Atualizar"
+                                                    BackgroundColor="#3478F6"
+                                                    IconImageSource="atualizar.png"
+                                                    CommandParameter="{Binding .}"
+                                                    Clicked="Button_Clciked_ScreenUpdate"/>
+
+                                        <SwipeItem Text="Deletar"
+                                                    BackgroundColor="#E24B4A"
+                                                    IconImageSource="desabilitado.png"
+                                                    CommandParameter="{Binding .}"
+                                                    Clicked="Button_Clicked_ChangeStatus"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Grid>
+                                    <Border
                                         HeightRequest="80"
                                         StrokeShape="8">
 
 
-                                            <Grid
+                                        <Grid
+                                            ColumnSpacing="10"
                                             Margin="10"
                                             ColumnDefinitions="60, *, Auto">
 
-                                                <Border
+                                            <Border
                                                 HeightRequest="50"
                                                 WidthRequest="50"
                                                 StrokeShape="10">
-                                                    <Image/>
-                                                </Border>
 
-                                                <Label
+                                                <Image Source="{Binding ImagePath}"
+                                                       Aspect="AspectFit"/>
+                                            </Border>
+
+                                            <Label
                                                 Padding="10"
                                                 VerticalOptions="Center"
                                                 HorizontalOptions="Start"
                                                 Grid.Column="1"
                                                 Text="{Binding Description}"/>
-                                                <Label
+                                            <Label
                                                 VerticalOptions="Center"
-                                                HorizontalOptions="Center"
+                                                HorizontalOptions="End"
                                                 Grid.Column="1"
-                                                Text="{Binding SalePrice, StringFormat='{}{0:C'}"/>
-                                                <Label
+                                                Text="{Binding SalePrice, StringFormat='{}{0:C} '}"/>
+                                            <Label
                                                 VerticalOptions="Center"
                                                 HorizontalOptions="Start"
                                                 Grid.Column="3"
                                                 Text="{Binding StockQuantity}"/>
-                                            </Grid>
-                                        </Border>
-                                    </Grid>
-                                </SwipeView>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </ScrollView>
-            </Grid>
-
-            <Button
-                 Grid.Row="3"
-                 Text="+"
-                 FontAttributes="Bold"
-                 FontSize="30"
-                 HeightRequest="30"
-                 TextColor="White"
-                 BackgroundColor="LightSlateGray"
-                 HorizontalOptions="End"
-                 Clicked="Button_Clicked_AddProduct"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
         </Grid>
 
-    </VerticalStackLayout>
+        <Button
+            Grid.Row="3"
+            ImageSource="mais.png"
+            HeightRequest="30"
+            TextColor="White"
+            BackgroundColor="Transparent"
+            HorizontalOptions="End"
+            VerticalOptions="Center"
+            Clicked="Button_Clicked_AddProduct"/>
+
+    </Grid>
 </ContentPage>
