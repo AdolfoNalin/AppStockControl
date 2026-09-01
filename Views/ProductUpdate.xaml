@@ -3,29 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppStockControl.Views.ProductUpdate"
              Title="ProductUpdate">
+
     <VerticalStackLayout>
 
+        <Border WidthRequest="120"
+                HeightRequest="50"
+                Margin="10"
+                StrokeShape="10"
+                HorizontalOptions="Center">
+
+            <Grid ColumnDefinitions="Auto, Auto"
+                    ColumnSpacing="10">
+
+                <ImageButton Source="voltar.png"
+                             Grid.Column="0"
+                             Clicked="ImageButton_Back"
+                             HorizontalOptions="Start"/>
+
+                <Label FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    FontSize="20"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    Text="Atualizar"/>
+            </Grid>
+        </Border>
 
         <Border StrokeShape="12"
                 Margin="10">
 
             <Grid Margin="10"
-                  RowSpacing="14"
-                  RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
-
-                <Border WidthRequest="120"
-                        HeightRequest="50"
-                        Grid.Row="0"
-                        Margin="10"
-                        StrokeShape="10"
-                        HorizontalOptions="Center">
-
-                    <Label FontAttributes="Bold"
-                            VerticalOptions="Center"
-                            FontSize="20"
-                            HorizontalOptions="Center"
-                            Text="Atualizar"/>
-                </Border>
+               RowSpacing="14"
+               RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
 
                 <Grid ColumnSpacing="8"
                       Grid.Row="1"
@@ -122,7 +131,6 @@
                     <Picker
                       Grid.Column="1"
                       HorizontalOptions="Center"
-                      ItemDisplayBinding="{Binding Name}"
                       SelectedItem="{Binding .}"
                       x:Name="pkUniType"
                       Title="Selecione Uni. Medida">
@@ -162,5 +170,5 @@
                 Clicked="Button_Clicked_Save"
                 FontAttributes="Bold"
                 Grid.Row="7"/>
-</VerticalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>
