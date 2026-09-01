@@ -21,13 +21,23 @@ public partial class ProductAdd : ContentPage
     {
         try
         {
-            ObservableCollection<Brand> brands = await BrandService.GetAll();
-            ObservableCollection<Supplier> suppliers = await SupplierService.GetAll();
-            ObservableCollection<Category> categorys = await CategoryService.GetAll();
+            List<String> uniTypeString = new List<String>()
+            {
+                "Unidade",
+                "Kg",
+                "Litros",
+                "Caixa",
+                "Pacote"
+            };
 
-            pkCategory.ItemsSource = categorys.Where(c => c.Active == true).ToList();
-            pkSupplier.ItemsSource = suppliers.Where(c => c.Active == true).ToList();
-            pkBrand.ItemsSource = brands.Where(c => c.Active == true).ToList();
+            pkUniType.ItemsSource = uniTypeString;
+            ObservableCollection<Brand> brands = await BrandService.GetByStatus(true);
+            ObservableCollection<Category> categorys = await CategoryService.GetByStatus(true);
+            ObservableCollection<Supplier> suppliers = await SupplierService.GetByStatus(true);
+
+            pkCategory.ItemsSource = categorys;
+            pkSupplier.ItemsSource = suppliers;
+            pkBrand.ItemsSource = brands;
         }
         catch (Exception ex)
         {
@@ -63,10 +73,10 @@ public partial class ProductAdd : ContentPage
                 MinimumStock = int.Parse(txtMinimumStock.Text),
                 BuyPrice = Decimal.Parse(txtBuyPrice.Text),
                 SalePrice = Decimal.Parse(txtSalePrice.Text),
-                CreatedAt = dpCreateAndUpdate.Date.Value.ToUniversalTime(),
+                CreatedAt = DateOnly.FromDateTime(dpCreateAndUpdate.Date.Value),
                 Observation = txtObs.Text,
                 ImagePath = _selectedImagePath,
-                //UnitType = (UnitType)int.Parse(pkUniType.Id.ToString())
+                UnitType = (UnitType)pkUniType.SelectedIndex
             };
 
             string message = await ProductService.Create(product);
@@ -123,4 +133,9 @@ public partial class ProductAdd : ContentPage
         }
     }
     #endregion
+
+    private void ImageButton_Back(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+    }
 }
