@@ -166,7 +166,7 @@ namespace AppStockControl.Service
             try
             {
                 HttpClient client = ConnectionLocalhost.ConnectionPostgree();
-                HttpResponseMessage response = await client.GetAsync($"{_name}/BySatus/{value}");
+                HttpResponseMessage response = await client.GetAsync($"{_name}/ByStatus/{value}");
 
                 if (response.IsSuccessStatusCode)
                 {
