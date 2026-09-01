@@ -5,7 +5,6 @@
         Unit,
         Kg,
         Liter,
-        Meter,
         Box,
         Package
     }
@@ -29,8 +28,8 @@
         BuyPrice == 0
         ? 0
         : ((SalePrice - BuyPrice) / BuyPrice) * 100;
-        public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
+        public DateOnly CreatedAt { get; set; }
+        public DateOnly? UpdatedAt { get; set; }
         public string? ImagePath { get; set; }
         public string? Observation { get; set; }
     }
