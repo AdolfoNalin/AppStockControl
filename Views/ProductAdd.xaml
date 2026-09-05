@@ -7,11 +7,11 @@
 
 
         <Border
-            Grid.Row="0"
-            Margin="10"
-            WidthRequest="160"
-            StrokeShape="10"
-            HorizontalOptions="Center">
+                WidthRequest="120"
+                HeightRequest="50"
+                Margin="10"
+                StrokeShape="10"
+                HorizontalOptions="Center">
 
             <Grid ColumnDefinitions="Auto, Auto"
                     ColumnSpacing="5">

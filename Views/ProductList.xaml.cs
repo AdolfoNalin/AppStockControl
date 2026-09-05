@@ -12,7 +12,7 @@ public partial class ProductList : ContentPage
     {
         InitializeComponent();
 
-        UpdateData();
+        rbAll.IsChecked = true;
 
         WeakReferenceMessenger.Default.Register<String>("Product", async (e, message) =>
         {
@@ -216,8 +216,8 @@ public partial class ProductList : ContentPage
         {
             DateOnly startDate = DateOnly.FromDateTime(dpStartDate.Date.Value.Date);
             DateOnly endDate = DateOnly.FromDateTime(dpEndDate.Date.Value.Date);
-            
-            if(endDate <= startDate)
+
+            if (endDate <= startDate)
             {
                 throw new ArgumentException("A data fim é menor do que a data de inicio");
             }
@@ -230,11 +230,11 @@ public partial class ProductList : ContentPage
                 cvProduct.ItemsSource = products;
             }
         }
-        catch(ArgumentNullException ane)
+        catch (ArgumentNullException ane)
         {
             DisplayAlert("Erro", ane.ParamName, "Fechar");
         }
-        catch(ArgumentException ae)
+        catch (ArgumentException ae)
         {
             DisplayAlert("Erro", ae.Message, "Fechar");
         }
@@ -244,4 +244,70 @@ public partial class ProductList : ContentPage
         }
     }
     #endregion
-}
+
+    #region CheckedChange_All
+    private void CheckedChange_All(object sender, CheckedChangedEventArgs e)
+    {
+        try
+        {
+            if (!e.Value)
+                return;
+
+            UpdateData();
+        }
+        catch (ArgumentNullException ane)
+        {
+            DisplayAlert("Erro", ane.ParamName, "Fechar");
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Erro", MessageException.Message(ex), "Fechar");
+        }
+    }
+    #endregion
+
+    #region CheckedChange_Enable
+    private async void CheckedChange_Enable(object sender, CheckedChangedEventArgs e)
+    {
+        try
+        {
+            if (!e.Value)
+                return;
+            ObservableCollection<Product> products = await ProductService.GetByStatus(true);
+            cvProduct.ItemsSource = products;
+        }
+        catch (ArgumentNullException ane)
+        {
+            DisplayAlert("Erro", ane.ParamName, "Fechar");
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Erro", MessageException.Message(ex), "Fechar");
+        }
+    }
+    #endregion
+
+    #region CheckedChange_Desable
+    private async void CheckedChange_Desable(object sender, CheckedChangedEventArgs e)
+    {
+        ObservableCollection<Product> products = new ObservableCollection<Product>();
+        try
+        {
+            if (!e.Value)
+                return;
+
+            products = await ProductService.GetByStatus(false);
+            cvProduct.ItemsSource = products;
+        }
+        catch (ArgumentNullException ane)
+        {
+            cvProduct.ItemsSource = products;
+            DisplayAlert("Erro", ane.ParamName, "Fechar");
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Erro", MessageException.Message(ex), "Fechar");
+        }
+    }
+    #endregion
+} 

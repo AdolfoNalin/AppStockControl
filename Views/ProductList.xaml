@@ -7,7 +7,7 @@
         RowSpacing="10"
         Padding="10"
         Margin="10"
-        RowDefinitions="Auto, Auto, *, Auto">
+        RowDefinitions="Auto, Auto, Auto, *, Auto">
 
         <Grid
             Grid.Row="0"
@@ -81,8 +81,31 @@
 
         </Grid>
 
+        <Grid ColumnDefinitions="Auto, Auto, Auto"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              Grid.Row="2"
+              ColumnSpacing="30">
+
+            <RadioButton Content="Todos"
+                         Grid.Column="0"
+                         x:Name="rbAll"
+                         CheckedChanged="CheckedChange_All"/>
+
+
+            <RadioButton Content="Ativados"
+                         x:Name="rbEnable"
+                         Grid.Column="1"
+                         CheckedChanged="CheckedChange_Enable"/>
+
+            <RadioButton Content="Desativados"
+                         x:Name="rbDesable"
+                         Grid.Column="2"
+                         CheckedChanged="CheckedChange_Desable"/>
+        </Grid>
+
         <Grid
-            Grid.Row="2">
+            Grid.Row="3">
             <ScrollView>
                 <CollectionView
                         x:Name="cvProduct">
@@ -98,7 +121,7 @@
                                                     CommandParameter="{Binding .}"
                                                     Clicked="Button_Clciked_ScreenUpdate"/>
 
-                                        <SwipeItem Text="Deletar"
+                                        <SwipeItem Text="Desativar ou Ativar "
                                                     BackgroundColor="#E24B4A"
                                                     IconImageSource="desabilitado.png"
                                                     CommandParameter="{Binding .}"
@@ -152,7 +175,7 @@
         </Grid>
 
         <Button
-            Grid.Row="3"
+            Grid.Row="4"
             ImageSource="mais.png"
             HeightRequest="30"
             TextColor="White"
