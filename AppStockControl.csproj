@@ -78,7 +78,6 @@
 	  <Folder Include="Assets\" />
 	  <Folder Include="Helpers\Behaviors\" />
 	  <Folder Include="Navigation\" />
-	  <Folder Include="Converters\" />
 	  <Folder Include="Behaviors\" />
 	  <Folder Include="Controls\" />
 	  <Folder Include="Storage\" />
