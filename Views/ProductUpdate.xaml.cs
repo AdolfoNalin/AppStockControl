@@ -76,7 +76,7 @@ public partial class ProductUpdate : ContentPage
 
     private void Button_Clicked_Update(object sender, EventArgs e)
     {
-
+        
     }
 
     private async void ImageButton_Clicked_SelectImage_Update(object sender, EventArgs e)

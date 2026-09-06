@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:AppStockControl.Converters"
              x:Class="AppStockControl.Views.CategoryList"
              Title="CategoryList">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ConvertEnableOrDisableColor x:Key="ConvertEnableOrDisableColor"/>
+            <converters:ConvertEnableOrDisableText x:Key="ConvertEnableOrDisableText"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <VerticalStackLayout>
         <Grid RowDefinitions="Auto, Auto">
 
@@ -52,27 +61,28 @@
                                     </SwipeView.RightItems>
                                     <Grid>
                                         <Border StrokeShape="12"
-                                            Margin="10"
-                                            Padding="10">
+                                                Margin="10"
+                                                Padding="10">
 
                                             <Grid ColumnDefinitions="Auto, Auto"
-                                              RowDefinitions="Auto, Auto"
-                                              RowSpacing="10"
-                                              ColumnSpacing="50">
+                                                  RowDefinitions="Auto, Auto"
+                                                  RowSpacing="10"
+                                                  ColumnSpacing="50">
 
                                                 <Label Text="{Binding Name}"
-                                                   Grid.Column="0"
-                                                   Grid.Row="0"/>
+                                                       Grid.Column="0"
+                                                       Grid.Row="0"/>
 
                                                 <Label Text="{Binding Description}"
-                                                   Grid.Column="0"
-                                                   Grid.Row="1"/>
+                                                       Grid.Column="0"
+                                                       Grid.Row="1"/>
 
-                                                <Label Text="{Binding Active}"
-                                                   VerticalOptions="Center"
-                                                   HorizontalOptions="End"
-                                                   Grid.Column="1"
-                                                   Grid.Row="1"/>
+                                                <Label Text="{Binding Active, Converter={StaticResource ConvertEnableOrDisableText}}"
+                                                       TextColor="{Binding Active, Converter={StaticResource ConvertEnableOrDisableColor}}"
+                                                       VerticalOptions="Center"
+                                                       HorizontalOptions="End"
+                                                       Grid.Column="1"
+                                                       Grid.Row="1"/>
 
                                             </Grid>
                                         </Border>

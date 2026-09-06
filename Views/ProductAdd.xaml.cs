@@ -94,6 +94,7 @@ public partial class ProductAdd : ContentPage
         catch (Exception ex)
         {
             DisplayAlert("Erro", MessageException.Message(ex), "Fechar");
+            DisplayAlert("Erro", $"{ex.Message}, {ex.StackTrace}, {ex.HelpLink}", "Fechar");
         }
     }   
     #endregion

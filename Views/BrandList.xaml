@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:AppStockControl.Converters"
              x:Class="AppStockControl.Views.BrandList"
              Title="Brand">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ConvertEnableOrDisableColor x:Key="ConvertEnableOrDisableColor"/>
+            <converters:ConvertEnableOrDisableText x:Key="ConvertEnableOrDisableText"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <VerticalStackLayout>
         <Grid RowDefinitions="Auto, Auto"
               RowSpacing="20"
@@ -72,7 +81,8 @@
                                                         Grid.Row="1"
                                                         Grid.Column="0"
                                                         HorizontalOptions="Start"/>
-                                                <Label Text="{Binding Active}"
+                                                <Label Text="{Binding Active, Converter={StaticResource ConvertEnableOrDisableText}}"
+                                                       TextColor="{Binding Active, Converter={StaticResource ConvertEnableOrDisableColor}}"
                                                         Grid.Row="0"
                                                         Grid.Column="1"
                                                         HorizontalOptions="End"/>

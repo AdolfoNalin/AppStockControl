@@ -21,11 +21,11 @@
                              HorizontalOptions="Start"/>
 
                 <Label FontAttributes="Bold"
-                    VerticalOptions="Center"
-                    FontSize="20"
-                    Grid.Column="1"
-                    HorizontalOptions="Center"
-                    Text="Atualizar"/>
+                        VerticalOptions="Center"
+                        FontSize="20"
+                        Grid.Column="1"
+                        HorizontalOptions="Center"
+                        Text="Atualizar"/>
             </Grid>
         </Border>
 
