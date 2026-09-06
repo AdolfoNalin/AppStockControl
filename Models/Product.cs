@@ -23,6 +23,7 @@
         public decimal BuyPrice{ get; set; }
         public decimal SalePrice{ get; set; }
         public UnitType UnitType { get; set; }
+        public bool IsActive { get; set; }
         public string? Barcode{ get; set; }
         public decimal ProfitMargin =>
         BuyPrice == 0
