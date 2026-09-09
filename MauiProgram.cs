@@ -50,6 +50,7 @@ namespace AppStockControl
                 mauiAppBuilder.Services.AddTransient<CategoryUpdate>();
                 mauiAppBuilder.Services.AddTransient<CategoryList>();
                 mauiAppBuilder.Services.AddTransient<Login>();
+                mauiAppBuilder.Services.AddTransient<MovimentStock>();
                 mauiAppBuilder.Services.AddTransient<SignUp>();
                 mauiAppBuilder.Services.AddTransient<Menu>();
                 mauiAppBuilder.Services.AddTransient<ProductAdd>();
