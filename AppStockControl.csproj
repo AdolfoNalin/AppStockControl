@@ -130,6 +130,9 @@
 	  <MauiXaml Update="Views\Menu.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\MovimentStock.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ProductAdd.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
