@@ -3,10 +3,279 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppStockControl.Views.Menu"
              Title="Menu">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+          RowSpacing="10">
+
+        <Border StrokeShape="18"
+                Grid.Row="0"
+                Padding="10">
+
+            <Grid>
+
+                <Image Source="logo.png"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Start"
+                       WidthRequest="80"
+                       HeightRequest="80"/>
+
+                <Grid RowDefinitions="Auto, Auto">
+                    
+                    <Grid RowDefinitions="Auto, Auto"
+                      Grid.Row="0"
+                          HorizontalOptions="Center">
+
+                        <Label Text="StockControl"
+                                FontSize="30"
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                FontAttributes="Bold"/>
+
+                        <Label Text="Seu estoque, sempre em controle"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                FontSize="12"/>
+                    </Grid>
+
+                    <Grid RowDefinitions="*, Auto, Auto"
+                          ColumnDefinitions="*, Auto"
+                          Grid.Row="1"
+                          Grid.Column="0"
+                          Margin="10">
+
+                        <Label x:Name="lblHelloUser"
+                               FontSize="25"
+                               HorizontalOptions="Fill"
+                               FontAttributes="Bold"
+                               Grid.Row="1"/>
+
+                        <Label Text="Aqui está um resumo do seu estoque"
+                               FontSize="12"
+                               Grid.Row="2"/>
+
+                        <DatePicker Grid.Row="0"
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+
+
+        <ScrollView Grid.Row="1">
+            <FlexLayout Wrap="Wrap"
+                    JustifyContent="Center"
+                    Direction="Row"
+                    Margin="12">
+
+                <!-- Item 1 -->
+                <Border StrokeShape="RoundRectangle 12"
+                        Padding="16"
+                        WidthRequest="140"
+                        Margin="6">
+
+                    <VerticalStackLayout Spacing="8" 
+                                         HorizontalOptions="Center">
+                        
+                        <Image Source="compras.png" 
+                               HeightRequest="28" 
+                               WidthRequest="28" />
+                        
+                        <Label FontSize="13" 
+                               HorizontalOptions="Center" 
+                               Text="Total de Produtos"/>
+                        
+                        <Label x:Name="lblTotalProduct"
+                               FontSize="20"
+                               HorizontalOptions="Center"
+                               FontAttributes="Bold"/>
+                        
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Item 2 -->
+                <Border StrokeShape="RoundRectangle 12"
+                        Padding="16"
+                        WidthRequest="140"
+                        Margin="6">
+                    
+                    <VerticalStackLayout Spacing="8" 
+                                         HorizontalOptions="Center">
+                        
+                        <Image Source="caixas.png"
+                               HeightRequest="28" 
+                               WidthRequest="28" />
+                        
+                        <Label Text="Em Estoque" 
+                               FontSize="13" 
+                               HorizontalOptions="Center" />
+
+                        <Label x:Name="lblStockQuantity"
+                               HorizontalOptions="Center"
+                               FontSize="20"
+                               FontAttributes="Bold"/>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Item 3 -->
+                <Border StrokeShape="RoundRectangle 12"
+                        Padding="16"
+                        WidthRequest="140"
+                        Margin="6">
+                    
+                    <VerticalStackLayout Spacing="8" 
+                                         HorizontalOptions="Center">
+                        
+                        <Image Source="alerta.png" 
+                               HeightRequest="28" 
+                               WidthRequest="28" />
+                        
+                        <Label Text="Estoque baixo" 
+                               FontSize="13" 
+                               HorizontalOptions="Center" />
+
+                        <Label x:Name="lblMinimumStock"
+                               FontSize="20"
+                               HorizontalOptions="Center"
+                               FontAttributes="Bold"/>
+                        
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Item 4 -->
+                <Border StrokeShape="RoundRectangle 12"
+                    Padding="16"
+                    WidthRequest="140"
+                    Margin="6">
+                    
+                    <VerticalStackLayout Spacing="8" 
+                                         HorizontalOptions="Center">
+
+                        <Image Source="dinheiro.png"
+                               HeightRequest="28"
+                               WidthRequest="28"/>
+                        
+                        <Label Text="Valor em Estoque" 
+                               FontSize="13"
+                               HorizontalOptions="Center"/>
+
+                        <Label x:Name="lblTotalPrice"
+                               FontSize="20"
+                               HorizontalOptions="Center"
+                               FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border StrokeShape="RoundRectangle 12"
+                        Padding="16"
+                        WidthRequest="160"
+                        Margin="6">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnClickedBorder_Product"/>
+                    </Border.GestureRecognizers>
+
+                    <VerticalStackLayout Spacing="8" 
+                                         HorizontalOptions="Center">
+
+                        <Image Source="compras.png"
+                               HeightRequest="28"
+                               WidthRequest="28"/>
+
+                        <Label Text="Produtos" 
+                               FontSize="20"
+                               HorizontalOptions="Center"
+                               FontAttributes="Bold"/>
+
+                        <Label Text="Gerencie seus produtos"
+                               FontSize="13"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border StrokeShape="RoundRectangle 12"
+                        Padding="16"
+                        WidthRequest="160"
+                        Margin="6">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnClickedBorder_Category"/>
+                    </Border.GestureRecognizers>
+
+                    <VerticalStackLayout Spacing="8" 
+                                         HorizontalOptions="Center">
+
+                        <Image Source="categoria.png"
+                               HeightRequest="28"
+                               WidthRequest="28"/>
+
+                        <Label Text="Categorias" 
+                               FontSize="20"
+                               HorizontalOptions="Center"
+                               FontAttributes="Bold"/>
+
+                        <Label Text="Organize por categoria"
+                               FontSize="13"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border StrokeShape="RoundRectangle 12"
+                        Padding="16"
+                        WidthRequest="160"
+                        Margin="6">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnClickedBorder_Supplier"/>
+                    </Border.GestureRecognizers>
+
+                    <VerticalStackLayout Spacing="8" 
+                                         HorizontalOptions="Center">
+
+                        <Image Source="fornecedor.png"
+                               HeightRequest="28"
+                               WidthRequest="28"/>
+
+                        <Label Text="Fornecedor" 
+                               FontSize="20"
+                               HorizontalOptions="Center"
+                               FontAttributes="Bold"/>
+
+                        <Label Text="Seus Fornecedores"
+                               FontSize="13"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border StrokeShape="RoundRectangle 12"
+                        Padding="16"
+                        WidthRequest="160"
+                        Margin="6">
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnClickedBorder_MovimentStock"/>
+                    </Border.GestureRecognizers>
+
+                    <VerticalStackLayout Spacing="8" 
+                                         HorizontalOptions="Center">
+
+                        <Image Source="caixa_registradora.png"
+                               HeightRequest="28"
+                               WidthRequest="28"/>
+
+                        <Label Text="Movimentação" 
+                               FontSize="20"
+                               HorizontalOptions="Center"
+                               FontAttributes="Bold"/>
+
+                        <Label Text="Gerencie seus produtoss"
+                               FontSize="13"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+            </FlexLayout>
+        </ScrollView>
+
+    </Grid>
 </ContentPage>

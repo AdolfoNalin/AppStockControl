@@ -141,7 +141,7 @@
                                 </SwipeView.RightItems>
                                 <Grid>
                                     <Border
-                                        HeightRequest="95"
+                                        HeightRequest="100"
                                         StrokeShape="8">
 
 
